@@ -1,4 +1,0 @@
-daniel:$2b$12$UCLNQSXH.JjzcCpE9obCSOcNvv4FD4huxq.Jee3ahIF9/W0yuCVGq
-moje:$2b$12$tju23DJeNZIgFd6v6sczVuL90uoYGLmgcHMHfq4zpmvOyCBPCjSJC
-honza:$2b$12$DGmPRYBhtNUmCqNi0LpCd.A5w8JkBvHXcA8GQ4tALY0NqebrKYUwq
-asd:$2b$12$UAhh3YU73r9im3ntSmcl1e6QZ0s/yjeAjofkB1glTYuNyAFsns1Fi
