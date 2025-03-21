@@ -1,0 +1,8 @@
+Hlavní aplikace je app3.py
+Přihlašovací údaje do aplikace: jméno: admin, heslo: admin
+Pro vložení nových přihlašovacích údajů slouží program registrace.py
+Aplikace slouží k zapisování a mazání dat do/z databáze
+Aby stránka zobrazovala produkty z databáze, musí být spuštěn server.py
+
+Stránka je na xeon.spskladno.cz/~pogorelm
+Pro informace o projektu klikněte na stránce na ikonu "i" nebo https://xeon.spskladno.cz/~pogorelm/info.html

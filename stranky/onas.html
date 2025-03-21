@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Kavárna S Radostí">
+        <meta name="keywords" content="kavárna, radost, kavarna unhost, unhošť">
+        <meta name="author" content="Miroslav Pogorelský">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>O nás</title>
+        <link rel="icon" type="image/x-icon" href="./ikony/favicon.ico">
+    </head>
+    <body>
+        <div class="topnav">
+            <div class="logo">
+                <a href="index.html"><img class="obr" src="./obrazky/radostlogo2.png"></a>
+            </div>
+            <div class="socky">
+                <a href="#" id="giftIcon"><img class="soc" src="./ikony/gift.png" width="32"></a>
+                <a href="info.html" target="_blank"><img class="soc" src="./ikony/info.png" width="35"></a>
+                <a href="https://www.instagram.com/kavarna.sradosti/" target="_blank"><img class="soc" src="./ikony/insta.png" width="30"></a>
+                <a href="https://www.facebook.com/kavarnasradosti/?locale=cs_CZ" target="_blank"><img class="soc" src="./ikony/facebook.png" width="32"></a>
+            </div>
+            <div class="menu">
+                <a class="menua" href="index.html">Domů</a>
+                <a class="menua" href="menu.html">Menu</a>
+                <a class="active" href="onas.html">O nás</a>
+            </div>
+        </div>
+        <div id="loginModal" class="modal"> <!--přihlašovací okno-->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Přihlášení</h2>
+        
+                <!-- Přihlašovací formulář -->
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="Uživatelské jméno" required><br>
+                    <input type="password" id="password" placeholder="Heslo" required><br>
+                    <button type="submit">Přihlásit se</button>
+                </form>
+        
+                <!-- Registrační formulář -->
+                <form id="registerForm" style="display:none;">
+                    <input type="text" id="newUsername" placeholder="Uživatelské jméno" required><br>
+                    <input type="password" id="newPassword" placeholder="Heslo" required><br>
+                    <input type="password" id="confirmPassword" placeholder="Potvrdit heslo" required><br>
+                    <button type="submit">Registrovat se</button>
+                </form>
+                <div id="logincontent" style="display:none;"> <!--obsah pro přihlášené uživatele-->
+                    <h2 id="userName">Přihlášený uživatel</h2>
+                    <p id="userPoints">Vaše body: 0</p>
+                    <button type="button" onclick="logout()">Odhlásit</button>
+                </div>
+                <p id="toggleForm">Nemáš účet? <a href="#">Registruj se!</a></p>
+            </div>
+        </div>
+        <div class="onas"> <!--informace o kavárně-->
+            <div class="onastext">
+                <h2>Kde nás najdete:</h2>
+                <a href="https://maps.app.goo.gl/QAc5pfCeNSdhr9x86" target="_blank">Melicharova 116, 273 51 Unhošť</a>
+                <p>+420 603 472 715</p>
+                <h2>Otevírací doba:</h2>
+                <p>Pondělí - Čtvrtek: 15:00 - 22:00</p>
+                <p>Pátek - Sobota: 14:00 - 24:00</p>
+                <p>Neděle: 14:00 - 22:00</p>
+            </div>
+            <div class="onasobrazek">
+                <img src="./obrazky/kavarnavenek.jpeg">
+            </div>
+        </div>
+        <script>
+            function logout() {
+                modalTitle.textContent = "Odhlášeno!";
+                document.getElementById("loginForm").style.display = "block";
+                document.getElementById("logincontent").style.display = "none";
+                document.getElementById("userName").textContent = "";
+                document.getElementById("userPoints").textContent = ""; // Vyčistíme body
+            }
+
+            // login menu
+            document.addEventListener("DOMContentLoaded", () => {
+                const giftIcon = document.querySelector('.socky .soc[src="./ikony/gift.png"]');
+                const loginModal = document.getElementById("loginModal");
+                const closeModal = document.querySelector(".close");
+                const loginForm = document.getElementById("loginForm");
+                const registerForm = document.getElementById("registerForm");
+                const modalTitle = document.getElementById("modalTitle");
+                const toggleForm = document.getElementById("toggleForm");
+
+                // Otevření modálního okna pod dárečkem
+                giftIcon.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const iconRect = giftIcon.getBoundingClientRect();
+                    loginModal.style.top = `${iconRect.bottom + window.scrollY}px`;
+                    loginModal.style.left = `${iconRect.left + window.scrollX}px`;
+                    loginModal.style.display = "block";
+                });
+
+                // Zavření modálního okna
+                closeModal.addEventListener("click", () => {
+                    loginModal.style.display = "none";
+                });
+
+                // Zavření okna kliknutím mimo
+                window.addEventListener("click", (e) => {
+                    if (e.target === loginModal) {
+                        loginModal.style.display = "none";
+                    }
+                });
+
+                // Přepínání mezi přihlášením a registrací
+                toggleForm.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (loginForm.style.display === "none") {
+                        loginForm.style.display = "block";
+                        registerForm.style.display = "none";
+                        modalTitle.textContent = "Přihlášení";
+                        toggleForm.innerHTML = 'Nemáš účet? <a href="#">Registruj se!</a>';
+                    } else {
+                        loginForm.style.display = "none";
+                        registerForm.style.display = "block";
+                        modalTitle.textContent = "Registrace";
+                        toggleForm.innerHTML = 'Máš už účet? <a href="#">Přihlaš se!</a>';
+                    }
+                });
+
+                // Odeslání přihlašovacího formuláře
+                loginForm.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                
+                    const username = document.getElementById("username").value;
+                    const password = document.getElementById("password").value;
+                
+                    const response = await fetch("login.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username, password })
+                    });
+                
+                    const data = await response.json();
+                
+                    if (data.success) {
+
+                        // Zobrazíme body v modalu
+                        modalTitle.textContent = "Přihlášeno!";
+                        document.getElementById("loginForm").style.display = "none";
+                        document.getElementById("logincontent").style.display = "block";
+                        document.getElementById("userName").textContent = `${data.username}`
+                        document.getElementById("userPoints").textContent = `Vaše body: ${data.points}`;
+                        toggleForm.innerHTML = 'Při nákupu obsluze nahlaš své jméno a získej slevy!';
+                    } else {
+                        alert(data.message || "Přihlášení se nezdařilo.");
+                    }
+                });
+                
+
+                // Odeslání registračního formuláře
+                registerForm.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    const newUsername = document.getElementById("newUsername").value;
+                    const newPassword = document.getElementById("newPassword").value;
+                    const confirmPassword = document.getElementById("confirmPassword").value;
+
+                    if (newPassword !== confirmPassword) {
+                        alert("Hesla se neshodují!");
+                        return;
+                    }
+
+                    const response = await fetch("register.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username: newUsername, password: newPassword })
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert("Registrace úspěšná!");
+                        toggleForm.click(); // přepne zpět na přihlášení
+                    } else {
+                        alert("Registrace se nezdařila: " + data.error);
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>

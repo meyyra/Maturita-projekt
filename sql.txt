@@ -1,0 +1,16 @@
+-- Tabulka kategorií
+CREATE TABLE 1Akategorie (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nazev VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Tabulka produktů
+CREATE TABLE 1Aprodukty (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nazev VARCHAR(255) NOT NULL,
+    cena DECIMAL(10,2) NOT NULL,
+    kategorie_id INT,
+    FOREIGN KEY (kategorie_id) REFERENCES kategorie(id) ON DELETE SET NULL
+);
+
+INSERT INTO 1Akategorie (nazev) VALUES ('Káva'), ('Teplé Nápoje'), ('Pivo'), ('Alko'), ('Nealko'), ('Jídlo');
