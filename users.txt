@@ -1,0 +1,3 @@
+daniel:$2b$12$UCLNQSXH.JjzcCpE9obCSOcNvv4FD4huxq.Jee3ahIF9/W0yuCVGq
+asd:$2b$12$UAhh3YU73r9im3ntSmcl1e6QZ0s/yjeAjofkB1glTYuNyAFsns1Fi
+admin:$2b$12$Wid3.esNyIlNDjoFIEFe1.p2wFcbXkYsvlGnKslaQ4X.ZLo2Wjix2
